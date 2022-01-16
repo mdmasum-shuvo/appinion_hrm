@@ -1,7 +1,7 @@
 import 'package:appinion_hrm/routes.dart';
-import 'package:appinion_hrm/theme.dart';
+import 'package:appinion_hrm/screen/LoginScreen.dart';
+import 'package:appinion_hrm/theme/theme.dart';
 import 'package:flutter/material.dart';
-import 'LoginScreen.dart';
 
 void main() {
   runApp(MyApp());
