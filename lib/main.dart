@@ -1,5 +1,5 @@
 import 'package:appinion_hrm/routes.dart';
-import 'package:appinion_hrm/screen/LoginScreen.dart';
+import 'package:appinion_hrm/screen/auth/LoginScreen.dart';
 import 'package:appinion_hrm/theme/theme.dart';
 import 'package:flutter/material.dart';
 

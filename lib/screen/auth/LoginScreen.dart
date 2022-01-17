@@ -6,7 +6,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'HomeScreen.dart';
+import '../Home/HomeScreen.dart';
+import 'component/AuthScreenComponent.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login_screen';
@@ -26,6 +27,7 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
         body: SingleChildScrollView(
       child: Container(
@@ -42,33 +44,21 @@ class LoginScreenState extends State<LoginScreen> {
           child: SafeArea(
             child: Column(
               children: [
-                const SizedBox(
-                  height: 110
-                ),
-                SvgPicture.asset(appIcon,width: 180,),
-                const SizedBox(
-                  height: 16,
-                ),
-
-                const Text(
-                  "Human Resource Mangement",
-                  style: TextStyle(color: Colors.white,fontSize: 14),
-                ),
-                const SizedBox(
-                  height: 120,
-                ),
+                const Expanded(flex: 2, child: SizedBox()),
+                authHeader(),
+                const Expanded(flex: 3, child: SizedBox()),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 36),
                   child: SizedBox(
-                    height: 48,
+                    height: getProportionateScreenHeight(48),
                     child: TextFormField(
-                      //  textAlign: TextAlign.center,
+                        //  textAlign: TextAlign.center,
                         decoration: const InputDecoration(
-                          hintText: "user ID",
-                          fillColor: Colors.white,
-                          filled: true,
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                        )),
+                      hintText: "user ID",
+                      fillColor: Colors.white,
+                      filled: true,
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                    )),
                   ),
                 ),
                 const SizedBox(
@@ -81,7 +71,7 @@ class LoginScreenState extends State<LoginScreen> {
                     child: TextFormField(
                         keyboardType: TextInputType.text,
                         obscureText: !_passwordVisible,
-                      //  textAlign: TextAlign.center,
+                        //  textAlign: TextAlign.center,
                         decoration: InputDecoration(
                             hintText: "password",
                             floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -116,7 +106,8 @@ class LoginScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       onPressed: () {
-                        Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+                        Navigator.of(context)
+                            .pushReplacementNamed(HomeScreen.routeName);
                       },
                       child: const Text(
                         "Login",
@@ -129,11 +120,13 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const Text(
-                  'Forgot Password',
+                  'Forgot Password?',
                   style: TextStyle(
                       color: Colors.white,
                       decoration: TextDecoration.underline),
                 ),
+                const Expanded(flex: 5, child: SizedBox()),
+
               ],
             ),
           )),
