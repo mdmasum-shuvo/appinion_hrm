@@ -1,18 +1,19 @@
+import 'dart:ffi';
 
 import 'package:appinion_hrm/theme/Colors.dart';
 import 'package:appinion_hrm/theme/ImageAssets.dart';
+import 'package:appinion_hrm/theme/SizeConfig.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget topClockCard(){
-  return   Padding(
+Widget topClockCard(bool isDashboard, String title, String subTitle) {
+  return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16),
     child: SizedBox(
       width: double.infinity,
-      height: 90,
+      height: getProportionateScreenHeight(80),
       child: Card(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         elevation: 4,
         child: Row(
           children: [
@@ -22,18 +23,17 @@ Widget topClockCard(){
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
-                      "Clock-In",
-                      style: TextStyle(
+                      title,
+                      style: const TextStyle(
                           color: deepBlue,
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      "you haven't clock in yet",
-                      style: TextStyle(
-                          color: Colors.black, fontSize: 14),
+                      subTitle,
+                      style: const TextStyle(color: Colors.black, fontSize: 14),
                     ),
                   ],
                 ),

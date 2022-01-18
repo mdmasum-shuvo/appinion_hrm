@@ -1,3 +1,4 @@
+import 'package:appinion_hrm/theme/Colors.dart';
 import 'package:flutter/material.dart';
 class DashBoardData {
   late int id;
@@ -16,9 +17,9 @@ class DashBoardData {
 }
 
 List<DashBoardData> loadDashboardDataList = [
-  DashBoardData(id: 0, title: "Present", subTitle: "Absent", progress: .90,color: Colors.green),
-  DashBoardData(id: 0, title: "late/Leave Early", subTitle: "Ontime", progress: 0.25,color: Colors.red),
-  DashBoardData(id: 0, title: "Total Working Hour", subTitle: "Short Working Hour", progress: 0.70,color: Colors.lightBlue),
-  DashBoardData(id: 0, title: "Overtime", subTitle: "Total Working Hour", progress: 0.5,color: Colors.orange),
+  DashBoardData(id: 0, title: "Present", subTitle: "Absent", progress: 1,color: green),
+  DashBoardData(id: 0, title: "Late/Leave Early", subTitle: "Ontime", progress: 0.25,color: red),
+  DashBoardData(id: 0, title: "Total Working\nHour", subTitle: "Short Working Hour", progress: 0.70,color: lightGreen),
+  DashBoardData(id: 0, title: "Overtime", subTitle: "Total Working Hour", progress: 0.5,color: orange),
 
 ];

@@ -1,4 +1,6 @@
 import 'package:appinion_hrm/screen/Home/HomeScreen.dart';
+import 'package:appinion_hrm/screen/auth/LoginScreen.dart';
+import 'package:appinion_hrm/screen/leave/LeaveDashboardScreen.dart';
 import 'package:appinion_hrm/theme/Colors.dart';
 import 'package:appinion_hrm/theme/ImageAssets.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,8 +11,8 @@ class AppbarDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
-        children: const [
-          UserAccountsDrawerHeader(
+        children: [
+          const UserAccountsDrawerHeader(
             currentAccountPicture: CircleAvatar(
               backgroundImage: AssetImage(personIcon),
             ),
@@ -32,76 +34,88 @@ class AppbarDrawer extends StatelessWidget {
                     ])),
             accountEmail: null,
           ),
-          SizedBox(
+          const SizedBox(
             height: 32,
           ),
           ListTile(
-            leading: CircleAvatar(
+            leading: const CircleAvatar(
               backgroundImage: AssetImage(homeIcon),
             ),
-            title: Text('Home',
+            title: const Text('Home',
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 14)),
-
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+            },
           ),
-          SizedBox(
+          const SizedBox(
             height: 24,
           ),
-          ListTile(
-            leading: CircleAvatar(
+           ListTile(
+            leading: const CircleAvatar(
               backgroundImage: AssetImage(calenderIcon),
             ),
-            title: Text('Leave',
+            title: const Text('Leave',
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 14)),
+             onTap: () {
+               Navigator.of(context).pushReplacementNamed(LeaveDashBoardScreen.routeName);
+             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 24,
           ),
-          ListTile(
-            leading: CircleAvatar(
+           ListTile(
+            leading: const CircleAvatar(
               backgroundImage: AssetImage(phoneBookIcon),
             ),
-            title: Text('Phonebook',
+            title: const Text("Phonebook",
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 14)),
+             onTap: () {
+               Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 24,
           ),
-          ListTile(
-            leading: CircleAvatar(
+           ListTile(
+            leading: const CircleAvatar(
               backgroundColor: Colors.transparent,
               child: CircleAvatar(
                 backgroundImage: AssetImage(adminSettings),
               ),
             ),
-            title: Text('Settings',
+            title: const Text('Settings',
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 14)),
-
+             onTap: () {
+               Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 24,
           ),
-          ListTile(
-            leading: CircleAvatar(
+           ListTile(
+            leading: const CircleAvatar(
               backgroundImage: AssetImage(logoutIcon),
             ),
-            title: Text('Logout',
+            title: const Text('Logout',
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 14)),
-
+             onTap: () {
+               Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
+             },
           ),
         ],
       ),
@@ -109,5 +123,6 @@ class AppbarDrawer extends StatelessWidget {
   }
 }
 
-itemSelected() {
-}
+methhod() {}
+
+itemSelected() {}

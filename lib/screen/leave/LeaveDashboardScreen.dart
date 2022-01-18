@@ -1,15 +1,16 @@
+import 'package:appinion_hrm/screen/Home/component/ClockCard.dart';
+import 'package:appinion_hrm/screen/Home/component/DashBoardProgressItem.dart';
+import 'package:appinion_hrm/screen/Home/data/DashboardData.dart';
 import 'package:appinion_hrm/screen/common/AppbarDrawer.dart';
 import 'package:appinion_hrm/theme/Colors.dart';
 import 'package:appinion_hrm/theme/SizeConfig.dart';
 import 'package:flutter/material.dart';
 
 import '../common/CustomAppbar.dart';
-import 'component/ClockCard.dart';
-import 'component/DashBoardProgressItem.dart';
-import 'data/DashboardData.dart';
 
-class HomeScreen extends StatelessWidget {
-  static const routeName = '/home_screen';
+
+class LeaveDashBoardScreen extends StatelessWidget{
+  static const routeName = '/leave_screen';
 
   @override
   Widget build(BuildContext context) {
@@ -24,24 +25,17 @@ class HomeScreen extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-              purple,
-              lightBlue,
-            ])),
+                  purple,
+                  lightBlue,
+                ])),
         child: Column(
           children: [
-             const Expanded(
-               flex:2,
-               child: SizedBox(),
-             ),
-            const Text(
-              "Good Morning 🌅 Mr. Masum",
-              style: TextStyle(fontSize: 18, color: Colors.white),
-            ),
+
             const Expanded(
-              flex:2,
+              flex:1,
               child: SizedBox(),
             ),
-            topClockCard(true,"Clock In","you haven't clock in yet"),
+            topClockCard(true,"Apply for Leave","Take leave if you really need"),
             Expanded(
               flex: 30,
               child: Padding(
@@ -50,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                     physics: const BouncingScrollPhysics(),
                     itemCount: loadDashboardDataList.length,
                     gridDelegate:
-                         SliverGridDelegateWithFixedCrossAxisCount(
+                    SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisExtent: getProportionateScreenHeight(200),
                     ),
@@ -64,13 +58,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-/*GridView.count(
-crossAxisCount: 2,
-children:
-List.generate(loadDashboardDataList.length, (index) {
-return Center(
-child: DashBoardProgressItem(
-data: loadDashboardDataList[index]),
-);
-})),*/

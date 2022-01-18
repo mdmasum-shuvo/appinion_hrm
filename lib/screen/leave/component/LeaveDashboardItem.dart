@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 
-class DashBoardProgressItem extends StatelessWidget {
-  const DashBoardProgressItem({Key? key, required this.data}) : super(key: key);
+class LeaveDashboardItem extends StatelessWidget {
+  const LeaveDashboardItem({Key? key, required this.data}) : super(key: key);
   final DashBoardData data;
 
   @override
@@ -44,8 +44,8 @@ class DashBoardProgressItem extends StatelessWidget {
                       Expanded(
                           child: Text(data.title,
                               style: TextStyle(
-                                color: data.color,
-                                fontSize: 12
+                                  color: data.color,
+                                  fontSize: 12
                               ),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis))
