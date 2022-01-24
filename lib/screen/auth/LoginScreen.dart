@@ -1,3 +1,4 @@
+import 'package:appinion_hrm/controller/AuthController.dart';
 import 'package:appinion_hrm/theme/Colors.dart';
 import 'package:appinion_hrm/theme/ImageAssets.dart';
 import 'package:appinion_hrm/theme/ImageConstant.dart';
@@ -5,12 +6,15 @@ import 'package:appinion_hrm/theme/SizeConfig.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../Home/HomeScreen.dart';
 import 'component/AuthScreenComponent.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login_screen';
+
+  final loginConroller = Get.put(AuthController());
 
   @override
   LoginScreenState createState() => LoginScreenState();
@@ -106,6 +110,7 @@ class LoginScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       onPressed: () {
+                        Obx()
                         Navigator.of(context)
                             .pushReplacementNamed(HomeScreen.routeName);
                       },
