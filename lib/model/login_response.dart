@@ -1,5 +1,6 @@
 /// status : "success"
 /// token : "3|pVKxxwOs8N1HgBYFBOaIlAROKt7R9WNnlkx4pmLC"
+import 'dart:convert';
 
 class LoginResponse {
   LoginResponse({
@@ -10,9 +11,8 @@ class LoginResponse {
     _token = token;
   }
 
-  LoginResponse.fromJson(dynamic json) {
-    _status = json['status'];
-    _token = json['token'];
+  LoginResponse.fromJson(String jsonData) {
+    json.decode(jsonData);
   }
 
   String? _status;
