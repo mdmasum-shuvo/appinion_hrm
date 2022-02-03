@@ -11,9 +11,10 @@ import 'package:get/get.dart';
 import '../Home/HomeScreen.dart';
 import 'component/AuthScreenComponent.dart';
 
+String errorText = "";
+
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login_screen';
-
 
   @override
   LoginScreenState createState() => LoginScreenState();
@@ -21,6 +22,9 @@ class LoginScreen extends StatefulWidget {
 
 class LoginScreenState extends State<LoginScreen> {
   var _passwordVisible = false;
+
+  var userNameController = TextEditingController();
+  var userPassController = TextEditingController();
   final loginController = Get.put(AuthController());
 
   void _togglePasswordVisible() {
@@ -32,10 +36,11 @@ class LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
     return Scaffold(
         body: SingleChildScrollView(
       child: Expanded(
-        child: Obx(()=> Container(
+          child: Container(
               height: MediaQuery.of(context).size.height,
               alignment: Alignment.center,
               decoration: const BoxDecoration(
@@ -43,58 +48,64 @@ class LoginScreenState extends State<LoginScreen> {
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
-                        purple,
-                        lightBlue,
-                      ])),
+                    purple,
+                    lightBlue,
+                  ])),
               child: SafeArea(
                 child: Column(
                   children: [
+                    Obx(() {
+                      if (loginController.isLoading.value) {
+                        return Expanded(child: CircularProgressIndicator());
+                      } else {
+                        return Text("");
+                      }
+                    }),
                     const Expanded(flex: 2, child: SizedBox()),
                     authHeader(),
                     const Expanded(flex: 3, child: SizedBox()),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 36),
-                      child: SizedBox(
-                        height: getProportionateScreenHeight(48),
-                        child: TextFormField(
+                      child: TextFormField(
                           //  textAlign: TextAlign.center,
-                            decoration: const InputDecoration(
-                              hintText: "user ID",
-                              fillColor: Colors.white,
-                              filled: true,
-                              floatingLabelBehavior: FloatingLabelBehavior.always,
-                            )),
-                      ),
+                          controller: userNameController,
+                          decoration: const InputDecoration(
+                            hintText: "user ID",
+                            fillColor: Colors.white,
+                            filled: true,
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                          )),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 36),
-                      child: SizedBox(
-                        height: 48,
-                        child: TextFormField(
-                            keyboardType: TextInputType.text,
-                            obscureText: !_passwordVisible,
-                            //  textAlign: TextAlign.center,
-                            decoration: InputDecoration(
-                                hintText: "password",
-                                floatingLabelBehavior: FloatingLabelBehavior.always,
-                                fillColor: Colors.white,
-                                filled: true,
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    _passwordVisible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
-                                    color: gray,
-                                  ),
-                                  onPressed: () {
-                                    _togglePasswordVisible();
-                                  },
-                                ))),
-                      ),
+                      child: TextFormField(
+                          keyboardType: TextInputType.text,
+                          obscureText: !_passwordVisible,
+                          controller: userPassController,
+
+                          //  textAlign: TextAlign.center,
+                          decoration: InputDecoration(
+                              hintText: "password",
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.always,
+                              fillColor: Colors.white,
+                              filled: true,
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _passwordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: gray,
+                                ),
+                                onPressed: () {
+                                  _togglePasswordVisible();
+                                },
+                              ))),
                     ),
+
                     const SizedBox(
                       height: 24,
                     ),
@@ -111,10 +122,14 @@ class LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(30.0),
                           ),
                           onPressed: () {
-
-
-                            /*             Navigator.of(context)
-                              .pushReplacementNamed(HomeScreen.routeName);*/
+                            if (!isValid(userNameController.text.toString(),
+                                userPassController.text.toString(), context)) {
+                              return;
+                            }
+                            loginController
+                                .authLogin(userNameController.text.toString(),
+                                userPassController.text.toString());
+                            // Get.to(HomeScreen(),transition: Transition.rightToLeft,duration: Duration(seconds: 2));
                           },
                           child: const Text(
                             "Login",
@@ -133,11 +148,21 @@ class LoginScreenState extends State<LoginScreen> {
                           decoration: TextDecoration.underline),
                     ),
                     const Expanded(flex: 5, child: SizedBox()),
-
                   ],
                 ),
               ))),
-      )
     ));
   }
+}
+
+final snackBar1 = SnackBar(content: Text(errorText));
+final snackBar2 = SnackBar(content: Text(errorText));
+
+bool isValid(String name, String pass, BuildContext context) {
+  if (name == "" || pass == "") {
+    errorText = "user name or password can't be empty";
+    ScaffoldMessenger.of(context).showSnackBar(snackBar1);
+    return false;
+  }
+  return true;
 }
