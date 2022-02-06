@@ -3,7 +3,6 @@ import 'package:appinion_hrm/theme/Colors.dart';
 import 'package:appinion_hrm/theme/ImageAssets.dart';
 import 'package:appinion_hrm/theme/ImageConstant.dart';
 import 'package:appinion_hrm/theme/SizeConfig.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -54,13 +53,7 @@ class LoginScreenState extends State<LoginScreen> {
               child: SafeArea(
                 child: Column(
                   children: [
-                    Obx(() {
-                      if (loginController.isLoading.value) {
-                        return Expanded(child: CircularProgressIndicator());
-                      } else {
-                        return Text("");
-                      }
-                    }),
+
                     const Expanded(flex: 2, child: SizedBox()),
                     authHeader(),
                     const Expanded(flex: 3, child: SizedBox()),
@@ -141,12 +134,23 @@ class LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
+
                     const Text(
                       'Forgot Password?',
                       style: TextStyle(
                           color: Colors.white,
                           decoration: TextDecoration.underline),
                     ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    Obx(() {
+                      if (loginController.isLoading.value) {
+                        return Expanded(child: CircularProgressIndicator());
+                      } else {
+                        return Text("");
+                      }
+                    }),
                     const Expanded(flex: 5, child: SizedBox()),
                   ],
                 ),

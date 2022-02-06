@@ -9,11 +9,11 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class LeaveDashboardItem extends StatelessWidget {
   const LeaveDashboardItem({Key? key, required this.data}) : super(key: key);
-  final DashBoardData data;
+  final LeaveData data;
 
   @override
   Widget build(BuildContext context) {
-    int progressText = (data.progress * 100).toInt();
+   // int progressText = (data.progress * 100).toInt();
     final Color color = data.color;
     return GestureDetector(
       onTap: () {
@@ -77,7 +77,7 @@ class LeaveDashboardItem extends StatelessWidget {
                   CircularPercentIndicator(
                     radius: getProportionateScreenHeight(110.0),
                     lineWidth: 8.0,
-                    percent: data.progress,
+                    percent: .80,
                     center: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment:CrossAxisAlignment.center,
@@ -87,32 +87,14 @@ class LeaveDashboardItem extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
-                              progressText.toString(),
+                              data.remainData.toString()+"/"+data.actualData.toString(),
                               style: const TextStyle(
-                                  fontSize: 36, fontWeight: FontWeight.w500),
+                                  fontSize: 26, fontWeight: FontWeight.w500),
                             ),
-                            const Text(
-                              "%",
-                              style: TextStyle(
-                                  fontSize: 10, fontWeight: FontWeight.bold),
 
-
-                            ),
                           ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 14.0),
-                          child: Expanded(
-                            child: Text(
 
-                              data.title,
-                              style: const TextStyle(fontSize: 10),
-                              maxLines: 2,
-                              textAlign: TextAlign.center,
-                            ),
-
-                          ),
-                        ),
                       ],
                     ),
                     progressColor: data.color,
