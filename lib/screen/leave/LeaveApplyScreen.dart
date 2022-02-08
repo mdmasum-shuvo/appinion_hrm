@@ -1,17 +1,8 @@
-import 'dart:ffi';
 
-import 'package:appinion_hrm/screen/Home/component/ClockCard.dart';
-import 'package:appinion_hrm/screen/Home/component/DashBoardProgressItem.dart';
-import 'package:appinion_hrm/screen/Home/data/DashboardData.dart';
-import 'package:appinion_hrm/screen/common/AppbarDrawer.dart';
-import 'package:appinion_hrm/screen/leave/LeaveApplyScreen.dart';
 import 'package:appinion_hrm/theme/Colors.dart';
 import 'package:appinion_hrm/theme/SizeConfig.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import '../common/CustomAppbar.dart';
-import 'component/LeaveDashboardItem.dart';
 
 class LeaveScreenState extends StatefulWidget{
   @override
@@ -49,7 +40,7 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                       child: Row(
                         children: [
                           SizedBox(
-                            height: getProportionateScreenHeight(80),
+                            height: getProportionateScreenHeight(90),
                             width: getProportionateScreenWidth(170),
                             child: Card(
                               shape: RoundedRectangleBorder(
@@ -85,7 +76,7 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                           ),
                           Spacer(), // use Spacer
                           SizedBox(
-                            height: getProportionateScreenHeight(80),
+                            height: getProportionateScreenHeight(90),
                             width: getProportionateScreenWidth(170),
                             child: Card(
                                 shape: RoundedRectangleBorder(
@@ -129,7 +120,7 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                       child: Row(
                         children: [
                           SizedBox(
-                            height: getProportionateScreenHeight(80),
+                            height: getProportionateScreenHeight(90),
                             width: getProportionateScreenWidth(170),
                             child: GestureDetector(
                               onTap: (){
@@ -140,14 +131,13 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(16.0,16,0,8),
+                                  padding: const EdgeInsets.fromLTRB(16.0,16,0,0),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text("Start Date",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-                                      Spacer(), // use Spacer
                                       Expanded(
-                                          child:  Text(_selectedDate.toString(),style: TextStyle(color: gray),)
+                                          child:  Text(_selectedDate.toString(),style: TextStyle(color: gray,fontSize: 14),maxLines: 1,)
                                       ),
                                     ],),
                                 ),),
@@ -155,7 +145,7 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                           ),
                           Spacer(), // use Spacer
                           SizedBox(
-                            height: getProportionateScreenHeight(80),
+                            height: getProportionateScreenHeight(90),
                             width: getProportionateScreenWidth(170),
                             child: GestureDetector(
                               onTap: (){
@@ -167,16 +157,14 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                                 ),
                                 
                                 child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(16.0,16,0,8.0),
+                                  padding: const EdgeInsets.fromLTRB(16.0,16,0,0.0),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
 
                                     Text("End Date",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-                                      Spacer(), // use Spacer
-
                                       Expanded(
-                                      child:  Text(_selectedDateEnd.toString(),style: TextStyle(color: gray),)
+                                      child:  Text(_selectedDateEnd.toString(),style: TextStyle(color: gray),maxLines: 1,)
                                   ),
 
 
@@ -191,7 +179,7 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                      child: SizedBox(
                        width: double.infinity,
-                       height: getProportionateScreenHeight(80),
+                       height: getProportionateScreenHeight(90),
                           child: Card(
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8.0),
@@ -202,7 +190,6 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text("No of Days",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-                                  Spacer(), // use Spacer
                                   Expanded(
                                       child:  Text("2",style: TextStyle(color: gray),)
                                   ),

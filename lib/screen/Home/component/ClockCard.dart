@@ -18,24 +18,27 @@ Widget topClockCard(bool isDashboard, String title, String subTitle) {
         child: Row(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 16.0),
+              padding:  EdgeInsets.only(left:getProportionateScreenWidth( 16.0)),
               child: Align(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                          color: deepBlue,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      subTitle,
-                      style: const TextStyle(color: Colors.black, fontSize: 14),
-                    ),
-                  ],
+                child: Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                        Text(
+                          title,
+                          style: const TextStyle(
+                              color: deepBlue,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        
+                        Text(
+                          subTitle,
+                          style: const TextStyle(color: Colors.black, fontSize: 14),maxLines: 2,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

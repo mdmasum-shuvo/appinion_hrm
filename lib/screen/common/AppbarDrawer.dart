@@ -1,6 +1,7 @@
 import 'package:appinion_hrm/screen/Home/HomeScreen.dart';
 import 'package:appinion_hrm/screen/auth/LoginScreen.dart';
 import 'package:appinion_hrm/screen/leave/LeaveDashboardScreen.dart';
+import 'package:appinion_hrm/screen/phonebook/PhoneBookScreen.dart';
 import 'package:appinion_hrm/theme/Colors.dart';
 import 'package:appinion_hrm/theme/ImageAssets.dart';
 import 'package:flutter/cupertino.dart';
@@ -84,7 +85,7 @@ class AppbarDrawer extends GetWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 14)),
              onTap: () {
-               Get.to(LeaveDashBoardScreen());
+               Get.to(PhoneBookScreen());
 
                //Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
              },

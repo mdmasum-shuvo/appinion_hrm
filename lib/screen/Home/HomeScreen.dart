@@ -12,8 +12,9 @@ import 'component/ClockCard.dart';
 import 'component/DashBoardProgressItem.dart';
 import 'data/DashboardData.dart';
 
-class HomeScreen extends GetWidget<ClockController> {
+class HomeScreen extends GetWidget{
   static const routeName = '/home_screen';
+  final clockController=Get.put(ClockController());
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +48,19 @@ class HomeScreen extends GetWidget<ClockController> {
             ),
             GestureDetector(
                 onTap: () {
-                  controller.clockIn();
+                  if(clockController.clockText.value=="Clock Out"){
+                     clockController.clockOut();
+                  }
+                  else{
+                    clockController.clockIn();
+                  }
                 },
                 child:
-                    topClockCard(true, "Clock In", "you haven't clock in yet")),
+                    GetX<ClockController>(
+                      builder: (controllerClock) {
+                        return topClockCard(true, clockController.clockText.value, controllerClock.clockInTime.value);
+                      }
+                    )),
             Expanded(
               flex: 30,
               child: Padding(
