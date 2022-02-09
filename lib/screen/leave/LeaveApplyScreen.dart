@@ -1,7 +1,12 @@
 
+import 'package:appinion_hrm/controller/LeaveController.dart';
+import 'package:appinion_hrm/model/leave/LeavePost.dart';
 import 'package:appinion_hrm/theme/Colors.dart';
 import 'package:appinion_hrm/theme/SizeConfig.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import '../common/CustomAppbar.dart';
 
 class LeaveScreenState extends StatefulWidget{
@@ -15,8 +20,10 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
   String leavType = 'Half day Leave';
   DateTime _selectedDate=new DateTime.now();
   DateTime _selectedDateEnd=new DateTime.now();
+  final applyController=Get.put(LeaveController());
   @override
   Widget build(BuildContext context) {
+
     // TODO: implement build
     return Scaffold(
       appBar: customAppbarWidget(),
@@ -198,6 +205,7 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
 
                       ),
                    ),
+
                    Padding(
                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                      child: SizedBox(
@@ -273,6 +281,14 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                     ),
                     onPressed: () {
                       // Get.to(HomeScreen(),transition: Transition.rightToLeft,duration: Duration(seconds: 2));
+                      LeavePost post=LeavePost();
+                      post.fromDate="15-03-2022";
+                      post.toDate="16-03-2022";
+                      post.leaveSlotId=1;
+                      post.leaveTypeId=3;
+                      post.reason="vacation";
+                      applyController.requestApplyLeave(post);
+                     // pr = ProgressDialog(context,type: ProgressDialogType.Normal, isDismissible: false, showLogs: true);
                     },
                     child: const Text(
                       "Submit",
@@ -319,4 +335,5 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
     });
   }
 }
+
 

@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Test Communication',
+      title: 'appinion hrm',
       theme: theme(),
       initialRoute: "/",
       getPages: Routes.routes,
