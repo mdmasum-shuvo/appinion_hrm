@@ -1,12 +1,14 @@
 import 'package:appinion_hrm/screen/Home/HomeScreen.dart';
 import 'package:appinion_hrm/screen/auth/LoginScreen.dart';
 import 'package:appinion_hrm/screen/leave/LeaveDashboardScreen.dart';
+import 'package:appinion_hrm/screen/phonebook/PhoneBookScreen.dart';
 import 'package:appinion_hrm/theme/Colors.dart';
 import 'package:appinion_hrm/theme/ImageAssets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class AppbarDrawer extends StatelessWidget {
+class AppbarDrawer extends GetWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -47,7 +49,9 @@ class AppbarDrawer extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 14)),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+              Get.to(HomeScreen());
+
+             // Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
             },
           ),
           const SizedBox(
@@ -63,7 +67,9 @@ class AppbarDrawer extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 14)),
              onTap: () {
-               Navigator.of(context).pushReplacementNamed(LeaveDashBoardScreen.routeName);
+               Get.to(LeaveDashBoardScreen());
+
+               //Navigator.of(context).pushReplacementNamed(LeaveDashBoardScreen.routeName);
              },
           ),
           const SizedBox(
@@ -79,7 +85,9 @@ class AppbarDrawer extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 14)),
              onTap: () {
-               Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+               Get.to(PhoneBookScreen());
+
+               //Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
              },
           ),
           const SizedBox(

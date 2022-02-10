@@ -11,8 +11,10 @@ class LoginResponse {
     _token = token;
   }
 
-  LoginResponse.fromJson(String jsonData) {
-    json.decode(jsonData);
+
+  LoginResponse.fromJson(Map<String, dynamic> json) {
+    _token = json['token'];
+    _status = json['status'];
   }
 
   String? _status;

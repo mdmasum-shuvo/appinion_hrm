@@ -18,24 +18,27 @@ Widget topClockCard(bool isDashboard, String title, String subTitle) {
         child: Row(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 16.0),
+              padding:  EdgeInsets.only(left:getProportionateScreenWidth( 16.0)),
               child: Align(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                          color: deepBlue,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      subTitle,
-                      style: const TextStyle(color: Colors.black, fontSize: 14),
-                    ),
-                  ],
+                child: Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                        Text(
+                          title,
+                          style: const TextStyle(
+                              color: deepBlue,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        
+                        Text(
+                          subTitle,
+                          style: const TextStyle(color: Colors.black, fontSize: 14),maxLines: 2,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -43,7 +46,7 @@ Widget topClockCard(bool isDashboard, String title, String subTitle) {
             SizedBox(
               height: 48,
               width: 48,
-              child: Center(child: Image.asset(clockIcon)),
+              child: Center(child: Image.asset(_setImage(isDashboard))),
             ),
             const SizedBox(
               width: 16,
@@ -53,4 +56,13 @@ Widget topClockCard(bool isDashboard, String title, String subTitle) {
       ),
     ),
   );
+}
+
+String _setImage(bool isDashboard) {
+  if (isDashboard) {
+    clockIcon;
+  } else  {
+    calenderIcon;
+  }
+  return clockIcon;
 }
