@@ -1,6 +1,7 @@
 
 import 'package:appinion_hrm/controller/LeaveController.dart';
 import 'package:appinion_hrm/model/leave/LeavePost.dart';
+import 'package:appinion_hrm/screen/common/Loader.dart';
 import 'package:appinion_hrm/theme/Colors.dart';
 import 'package:appinion_hrm/theme/SizeConfig.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,8 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
   DateTime _selectedDate=new DateTime.now();
   DateTime _selectedDateEnd=new DateTime.now();
   final applyController=Get.put(LeaveController());
+  var reasonController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
 
@@ -58,7 +61,7 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                      Text("Leave Category",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                                      const Text("Leave Category",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
                                       Expanded(
                                         child:  DropdownButton<String>(
                                         value: leavCeat,
@@ -81,7 +84,7 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                                 ],),
                               ),),
                           ),
-                          Spacer(), // use Spacer
+                          const Spacer(), // use Spacer
                           SizedBox(
                             height: getProportionateScreenHeight(90),
                             width: getProportionateScreenWidth(170),
@@ -95,7 +98,7 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
 
-                                    Text("Leave Type",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                                    const Text("Leave Type",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
                                     Expanded(
                                         child:  DropdownButton<String>(
                                           value: leavType,
@@ -142,15 +145,15 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text("Start Date",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                                      const Text("Start Date",style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
                                       Expanded(
-                                          child:  Text(_selectedDate.toString(),style: TextStyle(color: gray,fontSize: 14),maxLines: 1,)
+                                          child:  Text(_selectedDate.toString(),style: const TextStyle(color: gray,fontSize: 14),maxLines: 1,)
                                       ),
                                     ],),
                                 ),),
                             ),
                           ),
-                          Spacer(), // use Spacer
+                          const Spacer(), // use Spacer
                           SizedBox(
                             height: getProportionateScreenHeight(90),
                             width: getProportionateScreenWidth(170),
@@ -169,9 +172,9 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
 
-                                    Text("End Date",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                                    const Text("End Date",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
                                       Expanded(
-                                      child:  Text(_selectedDateEnd.toString(),style: TextStyle(color: gray),maxLines: 1,)
+                                      child:  Text(_selectedDateEnd.toString(),style: const TextStyle(color: gray),maxLines: 1,)
                                   ),
 
 
@@ -195,9 +198,9 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                               padding: const EdgeInsets.fromLTRB(16.0,16,0,8),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("No of Days",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-                                  Expanded(
+                                children: const [
+                                   Text("No of Days",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                                   Expanded(
                                       child:  Text("2",style: TextStyle(color: gray),)
                                   ),
                                 ],),
@@ -219,12 +222,13 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                               padding: const EdgeInsets.fromLTRB(16.0,16,0,8),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children:  [
                                   Text("Reason for leave",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
                             // use Spacer
                                   TextField(
                                     textAlign: TextAlign.left,
-                                    decoration: const InputDecoration(
+                                    controller: reasonController,
+                                    decoration:  InputDecoration(
                                       hintText: 'reason of leave',
                                     ),
                                     autofocus: false,
@@ -282,11 +286,11 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                     onPressed: () {
                       // Get.to(HomeScreen(),transition: Transition.rightToLeft,duration: Duration(seconds: 2));
                       LeavePost post=LeavePost();
-                      post.fromDate="15-03-2022";
-                      post.toDate="16-03-2022";
+                      post.fromDate=_selectedDate.toString();
+                      post.toDate=_selectedDateEnd.toString();
                       post.leaveSlotId=1;
                       post.leaveTypeId=3;
-                      post.reason="vacation";
+                      post.reason=reasonController.text.toString();
                       applyController.requestApplyLeave(post);
                      // pr = ProgressDialog(context,type: ProgressDialogType.Normal, isDismissible: false, showLogs: true);
                     },
@@ -301,6 +305,20 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                 ),
               ),
             ),
+            Obx(() {
+              if (applyController.isLoading.value) {
+                return Column(
+                  children: [
+                    Container(
+                        height: MediaQuery.of(context).size.height,
+                        alignment: Alignment.center,
+                        child: Center(child: Expanded(child: CircularLoading()))),
+                  ],
+                );
+              } else {
+                return const Text("");
+              }
+            }),
 
           ],
         )

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:appinion_hrm/controller/AuthController.dart';
 import 'package:appinion_hrm/model/DefaultResponse.dart';
+import 'package:appinion_hrm/model/leave/LeaveData.dart';
 import 'package:appinion_hrm/model/leave/LeavePost.dart';
 import 'package:http/http.dart' as http;
 
@@ -26,6 +27,24 @@ class LeaveRepository{
 
     if(response.statusCode==200){
       var responseData=DefaultResponse.fromJson(response);
+      return responseData;
+    }
+    return null;
+  }
+
+
+  static Future<LeaveData?> leaveInfo() async{
+    var url = BASE_URL + LEAVE_INFO;
+
+
+    var response = await client.get(Uri.parse(url),
+        headers: <String, String>{
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token'
+        });
+
+    if(response.statusCode==200){
+      var responseData=LeaveData.fromJson(response.body);
       return responseData;
     }
     return null;

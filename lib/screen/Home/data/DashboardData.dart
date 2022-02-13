@@ -17,7 +17,7 @@ class DashBoardData {
 }
 
 
-class LeaveData {
+class LeaveDashBoardData {
   late int id;
 
   late String title;
@@ -26,7 +26,7 @@ class LeaveData {
   late int remainData;
   late Color  color;
 
-  LeaveData(
+  LeaveDashBoardData(
       {required this.id,
       required this.title,
       required this.subTitle,
@@ -43,10 +43,13 @@ List<DashBoardData> loadDashboardDataList = [
 
 ];
 
-List<LeaveData> loadLeavedDataList = [
-  LeaveData(id: 0, title: "Casual Leave", subTitle: "Leave Remain", actualData: 12,remainData: 5,color: green),
-  LeaveData(id: 0, title: "Sick Leave", subTitle: "Leave Remain", actualData: 18,remainData:11,color: yellow),
-  LeaveData(id: 0, title: "Special Leave", subTitle: "Leave Remain", actualData: 5,remainData: 2,color: brown),
-  LeaveData(id: 0, title: "Unpaid Leave", subTitle: "Leave Remain", actualData: 5,remainData: 3,color: red),
+List<LeaveDashBoardData> loadLeavedDataList = [
+  LeaveDashBoardData(id: 0, title: "Casual Leave", subTitle: "Leave Remain", actualData: 12,remainData: 5,color: green),
+  LeaveDashBoardData(id: 0, title: "Sick Leave", subTitle: "Leave Remain", actualData: 18,remainData:11,color: yellow),
+  LeaveDashBoardData(id: 0, title: "Special Leave", subTitle: "Leave Remain", actualData: 5,remainData: 2,color: brown),
+  LeaveDashBoardData(id: 0, title: "Unpaid Leave", subTitle: "Leave Remain", actualData: 5,remainData: 3,color: red),
 
 ];
+
+
+

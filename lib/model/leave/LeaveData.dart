@@ -21,7 +21,7 @@ class LeaveData {
   String? casualLeave;
   int? casualLeaveUse;
   String? sickLeaveAssign;
-  String? sickLeaveUse;
+  int? sickLeaveUse;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

@@ -1,3 +1,4 @@
+import 'package:appinion_hrm/controller/LeaveController.dart';
 import 'package:appinion_hrm/screen/Home/component/ClockCard.dart';
 import 'package:appinion_hrm/screen/Home/component/DashBoardProgressItem.dart';
 import 'package:appinion_hrm/screen/Home/data/DashboardData.dart';
@@ -11,9 +12,10 @@ import 'package:get/get.dart';
 import '../common/CustomAppbar.dart';
 import 'component/LeaveDashboardItem.dart';
 
-
-class LeaveDashBoardScreen extends GetWidget{
+class LeaveDashBoardScreen extends GetWidget {
   static const routeName = '/leave_screen';
+  final applyController = Get.put(LeaveController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,36 +29,41 @@ class LeaveDashBoardScreen extends GetWidget{
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  purple,
-                  lightBlue,
-                ])),
+              purple,
+              lightBlue,
+            ])),
         child: Column(
           children: [
-
             const Expanded(
-              flex:1,
+              flex: 1,
               child: SizedBox(),
             ),
             GestureDetector(
-              onTap: (){
-                Get.to(LeaveScreenState());
-              },
-                child: topClockCard(false,"Apply for Leave","Take leave if you really need")),
+                onTap: () {
+                  Get.to(LeaveScreenState());
+                },
+                child: topClockCard(
+                    false, "Apply for Leave", "Take leave if you really need")),
             Expanded(
               flex: 30,
-              child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: GridView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: loadLeavedDataList.length,
-                    gridDelegate:
-                    SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisExtent: getProportionateScreenHeight(200),
-                    ),
-                    itemBuilder: (_, index) => LeaveDashboardItem(
-                        data: loadLeavedDataList[index]),
-                  )),
+              child: Obx(() {
+                if (applyController.isLoading.value) {
+                  return  const Center(child:  CircularProgressIndicator(color: Colors.white,strokeWidth: 30,));
+                } else {
+                  return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: GridView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: loadLeavedDataList.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisExtent: getProportionateScreenHeight(200),
+                        ),
+                        itemBuilder: (_, index) =>
+                            LeaveDashboardItem(data: loadLeavedDataList[index]),
+                      ));
+                }
+              }),
             )
           ],
         ),

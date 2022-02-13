@@ -9,7 +9,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class LeaveDashboardItem extends StatelessWidget {
   const LeaveDashboardItem({Key? key, required this.data}) : super(key: key);
-  final LeaveData data;
+  final LeaveDashBoardData data;
 
   @override
   Widget build(BuildContext context) {

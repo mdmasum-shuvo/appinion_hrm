@@ -1,16 +1,16 @@
 
+import 'package:appinion_hrm/controller/PhoneBookController.dart';
 import 'package:appinion_hrm/screen/common/CustomAppbar.dart';
 import 'package:appinion_hrm/screen/phonebook/PhoneBookItem.dart';
-import 'package:appinion_hrm/theme/ImageAssets.dart';
-import 'package:appinion_hrm/theme/SizeConfig.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:appinion_hrm/theme/Colors.dart';
 import '../common/CustomAppbar.dart';
 
 class PhoneBookScreen extends GetWidget{
+
+  final phoneBookController=Get.put(PhoneBookController());
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -28,7 +28,31 @@ class PhoneBookScreen extends GetWidget{
         lightBlue,
         ])),
 
-          child: Padding(
+          child:Column(
+            children: [
+              Expanded(
+                child: Obx(() {
+                  if (phoneBookController.isLoading.value) {
+                    return const  Center(child:  CircularProgressIndicator(color: Colors.white,));
+                  } else {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: ListView.builder(
+                        itemCount: phoneBookController.list.length,
+                        itemBuilder: (BuildContext context,int index){
+                          return PhoneBookItem( data: phoneBookController.list[index],);
+
+                        },
+                      ),
+                    );
+                  }
+                }),
+              ),
+            ],
+          )
+
+
+          /* Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: ListView(children: [
               PhoneBookItem(),
@@ -39,11 +63,11 @@ class PhoneBookScreen extends GetWidget{
             ],
 
             ),
-          ),
+          ),*/
     )
 
     );
   }
-  
+
 }
 

@@ -1,4 +1,6 @@
 
+import 'package:appinion_hrm/model/phone_book.dart';
+import 'package:appinion_hrm/repository/NetoworkConstant.dart';
 import 'package:appinion_hrm/screen/phonebook/PhoneBookScreen.dart';
 import 'package:appinion_hrm/theme/ImageAssets.dart';
 import 'package:appinion_hrm/theme/SizeConfig.dart';
@@ -6,6 +8,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PhoneBookItem extends StatelessWidget{
+  const PhoneBookItem({Key? key, required this.data}) : super(key: key);
+  final PhoneBook data;
   @override
   Widget build(BuildContext context) {
    return GestureDetector(child: SizedBox(
@@ -24,7 +28,7 @@ class PhoneBookItem extends StatelessWidget{
                   height: getProportionateScreenHeight(64),
                   width: getProportionateScreenWidth(64),
                   child: CircleAvatar(
-                  backgroundImage: AssetImage(personIcon,),
+                  backgroundImage: NetworkImage(IMAGE_URL+data.photo!),
                   ),
                 ),
                   Padding(
@@ -32,10 +36,10 @@ class PhoneBookItem extends StatelessWidget{
                     child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(child: Text("Md Masum Talukder",style: TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.bold),)),
-                      Expanded(child: Text("Software engineer",style: TextStyle(color: Colors.black,fontSize: 12),),),
-                      Expanded(child: Text("Phone : 01680021468",style: TextStyle(color: Colors.black,fontSize: 12),)),
-                      Expanded(child: Text("Email : masum.talukder@appinionbd.com",style: TextStyle(color: Colors.black,fontSize: 12),)),
+                      Expanded(child: Text(data.name!+" ("+data.bloodGroup!+")",style: const TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.bold),)),
+                      Expanded(child: Text(data.designations!,style: const TextStyle(color: Colors.black,fontSize: 12),),),
+                      Expanded(child: Text("Phone : "+data.phone!,style: const TextStyle(color: Colors.black,fontSize: 12),)),
+                      Expanded(child: Text("Email : "+data.email!,style: const TextStyle(color: Colors.black,fontSize: 12),)),
                     ],),
                   )
                 ],
