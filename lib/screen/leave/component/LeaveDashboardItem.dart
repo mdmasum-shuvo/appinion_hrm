@@ -4,6 +4,7 @@ import 'package:appinion_hrm/theme/Colors.dart';
 import 'package:appinion_hrm/theme/SizeConfig.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/double_extensions.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 
@@ -14,6 +15,8 @@ class LeaveDashboardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    // int progressText = (data.progress * 100).toInt();
+    final double parcent=data.remainData/data.actualData;
+
     final Color color = data.color;
     return GestureDetector(
       onTap: () {
@@ -77,7 +80,7 @@ class LeaveDashboardItem extends StatelessWidget {
                   CircularPercentIndicator(
                     radius: getProportionateScreenHeight(110.0),
                     lineWidth: 8.0,
-                    percent: .80,
+                    percent: parcent.toPrecision(2),
                     center: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment:CrossAxisAlignment.center,

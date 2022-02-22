@@ -23,6 +23,7 @@ class AuthController extends GetxController {
       isLoading(true);
       var response = await AuthRepository.loginPost(userID, pass);
       if (response != null) {
+        isLoading(false);
         casts.value = response;
         //prefs.setString(PREF_TOKEN, casts.value.token.toString());
         token= casts.value.token.toString();

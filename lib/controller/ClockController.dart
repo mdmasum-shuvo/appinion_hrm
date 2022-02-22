@@ -1,10 +1,13 @@
 import 'package:appinion_hrm/model/clock/clock_response.dart';
+import 'package:appinion_hrm/model/home/DashBoardResponse.dart';
 import 'package:appinion_hrm/repository/ClockIn.dart';
+import 'package:appinion_hrm/repository/DashboardRepository.dart';
 import 'package:get/get.dart';
 
 class ClockController extends GetxController {
   var isLoading = false.obs;
   var clockInResponse = ClockResponse().obs;
+  var dashboardResponse = DashBoardResponse().obs;
   var clockInTime = "you haven't clock in yet".obs;
   var clockText = "Clock In".obs;
 
@@ -13,6 +16,7 @@ class ClockController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     clockInInfo();
+    requestDashboard();
   }
 
   void clockIn() async {
@@ -70,8 +74,6 @@ class ClockController extends GetxController {
     }
   }
 
-
-
   void clockInInfo() async {
     try {
       isLoading(true);
@@ -87,6 +89,23 @@ class ClockController extends GetxController {
           clockText.value="Clock out";
 
         }
+      }
+      else
+      {
+        Get.snackbar("error","Something went wrong",snackPosition: SnackPosition.BOTTOM);
+      }
+    }
+
+    finally {
+      isLoading(false);
+    }
+  }
+  void requestDashboard() async {
+    try {
+      isLoading(true);
+      var response = await DashboardRepository.dashboardRequest();
+      if (response != null) {
+        dashboardResponse.value=response;
       }
       else
       {

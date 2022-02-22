@@ -1,6 +1,7 @@
 
 import 'package:appinion_hrm/controller/LeaveController.dart';
 import 'package:appinion_hrm/model/leave/LeavePost.dart';
+import 'package:appinion_hrm/screen/auth/LoginScreen.dart';
 import 'package:appinion_hrm/screen/common/Loader.dart';
 import 'package:appinion_hrm/theme/Colors.dart';
 import 'package:appinion_hrm/theme/SizeConfig.dart';
@@ -17,10 +18,12 @@ class LeaveScreenState extends StatefulWidget{
 }
 
 class LeaveApplyScreen extends State<LeaveScreenState>{
-  String leavCeat = 'Sick Leave';
-  String leavType = 'Half day Leave';
-  DateTime _selectedDate=new DateTime.now();
-  DateTime _selectedDateEnd=new DateTime.now();
+  String leaveCat = 'Sick Leave';
+  String leaveType = 'Half day Leave';
+  String leaveCatId = '';
+  String leaveTypeId = '';
+  DateTime _selectedDate=DateTime.now();
+  DateTime _selectedDateEnd= DateTime.now();
   final applyController=Get.put(LeaveController());
   var reasonController = TextEditingController();
 
@@ -29,8 +32,10 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
 
     // TODO: implement build
     return Scaffold(
+        resizeToAvoidBottomInset: false,
       appBar: customAppbarWidget(),
       body: Container(
+
         height: MediaQuery.of(context).size.height,
         alignment: Alignment.center,
         decoration: const BoxDecoration(
@@ -64,11 +69,18 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                                       const Text("Leave Category",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
                                       Expanded(
                                         child:  DropdownButton<String>(
-                                        value: leavCeat,
+                                        value: leaveCat,
                                         style: const TextStyle(color: gray),
                                         onChanged: (String? newValue) {
                                           setState(() {
-                                            leavCeat = newValue!;
+                                            leaveCat = newValue!;
+                                            if(newValue=="Sick Leave"){
+                                              leaveCatId="4";
+                                            }
+                                            else if(newValue=="Casual Leave"){
+                                              leaveCatId="3";
+                                            }
+
                                           });
                                         },
                                         items: <String>['Sick Leave', 'Casual Leave']
@@ -101,11 +113,17 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                                     const Text("Leave Type",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
                                     Expanded(
                                         child:  DropdownButton<String>(
-                                          value: leavType,
+                                          value: leaveType,
                                           style: const TextStyle(color: gray),
                                           onChanged: (String? newValue1) {
                                             setState(() {
-                                              leavType = newValue1!;
+                                              leaveType = newValue1!;
+                                              if(newValue1=="Half day Leave"){
+                                                leaveCatId="2";
+                                              }
+                                              else if(newValue1=="Full day Leave"){
+                                                leaveCatId="1";
+                                              }
                                             });
                                           },
                                           items: <String>['Half day Leave', 'Full day Leave']
@@ -165,7 +183,7 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                
+
                                 child: Padding(
                                   padding: const EdgeInsets.fromLTRB(16.0,16,0,0.0),
                                   child: Column(
@@ -223,49 +241,27 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children:  [
-                                  Text("Reason for leave",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                                  const Text("Reason for leave",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
                             // use Spacer
-                                  TextField(
-                                    textAlign: TextAlign.left,
-                                    controller: reasonController,
-                                    decoration:  InputDecoration(
-                                      hintText: 'reason of leave',
-                                    ),
-                                    autofocus: false,
-                                   // focusNode: _focusnode,
-                                    //controller: _newreplycontroller,
-                                    keyboardType: TextInputType.text,
-                                  ),
+                                  Expanded(
+                                      child: TextFormField(
+                                          //  textAlign: TextAlign.center,
+                                            controller: reasonController,
+                                            decoration: const InputDecoration(
+                                              hintText: "reason",
+                                              fillColor: Colors.white,
+                                              filled: true,
+                                              floatingLabelBehavior: FloatingLabelBehavior.always,
+                                            )),
+                                      ),
+
+
 
                                 ],),
                             ),),
 
                       ),
                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: SizedBox(
-                        width: double.infinity,
-                        height: getProportionateScreenHeight(80),
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(16.0,16,0,8),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text("Attachment",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-                                Spacer(), // use Spacer
-                                Expanded(
-                                    child:  Text("Add files",style: TextStyle(color: gray),)
-                                ),
-                              ],),
-                          ),),
-
-                      ),
-                    ),
                   ],
     ),
 
@@ -288,10 +284,14 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                       LeavePost post=LeavePost();
                       post.fromDate=_selectedDate.toString();
                       post.toDate=_selectedDateEnd.toString();
-                      post.leaveSlotId=1;
-                      post.leaveTypeId=3;
+                      post.leaveSlotId=leaveCatId;
+                      post.leaveTypeId=leaveTypeId;
                       post.reason=reasonController.text.toString();
-                      applyController.requestApplyLeave(post);
+                      if(isValid(post,context)){
+                        //applyController.requestApplyLeave(post);
+
+                      }
+
                      // pr = ProgressDialog(context,type: ProgressDialogType.Normal, isDismissible: false, showLogs: true);
                     },
                     child: const Text(
@@ -352,6 +352,17 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
       });
     });
   }
+}
+
+
+bool isValid(LeavePost post, BuildContext context) {
+  
+/*  if (post.leaveTypeId == "" || pass == "") {
+    errorText = "user name or password can't be empty";
+    ScaffoldMessenger.of(context).showSnackBar(snackBar1);
+    return false;
+  }*/
+  return true;
 }
 
 

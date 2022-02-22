@@ -17,8 +17,8 @@ class LeavePost {
     toDate = json['to_date'];
     reason = json['reason'];
   }
-  int? leaveTypeId;
-  int? leaveSlotId;
+  String? leaveTypeId;
+  String? leaveSlotId;
   String? fromDate;
   String? toDate;
   String? reason;

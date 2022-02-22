@@ -45,7 +45,7 @@ List<DashBoardData> loadDashboardDataList = [
 
 List<LeaveDashBoardData> loadLeavedDataList = [
   LeaveDashBoardData(id: 0, title: "Casual Leave", subTitle: "Leave Remain", actualData: 12,remainData: 5,color: green),
-  LeaveDashBoardData(id: 0, title: "Sick Leave", subTitle: "Leave Remain", actualData: 18,remainData:11,color: yellow),
+  LeaveDashBoardData(id: 0, title: "Sick Leave", subTitle: "Leave Remain", actualData: 18,remainData:16,color: yellow),
   LeaveDashBoardData(id: 0, title: "Special Leave", subTitle: "Leave Remain", actualData: 5,remainData: 2,color: brown),
   LeaveDashBoardData(id: 0, title: "Unpaid Leave", subTitle: "Leave Remain", actualData: 5,remainData: 3,color: red),
 
