@@ -1,5 +1,6 @@
 import 'package:appinion_hrm/controller/ClockController.dart';
 import 'package:appinion_hrm/screen/common/AppbarDrawer.dart';
+import 'package:appinion_hrm/screen/common/Loader.dart';
 import 'package:appinion_hrm/theme/Colors.dart';
 import 'package:appinion_hrm/theme/SizeConfig.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +13,9 @@ import 'component/ClockCard.dart';
 import 'component/DashBoardProgressItem.dart';
 import 'data/DashboardData.dart';
 
-class HomeScreen extends GetWidget{
+class HomeScreen extends GetWidget {
   static const routeName = '/home_screen';
-  final clockController=Get.put(ClockController());
+  final clockController = Get.put(ClockController());
 
   @override
   Widget build(BuildContext context) {
@@ -46,21 +47,25 @@ class HomeScreen extends GetWidget{
               flex: 2,
               child: SizedBox(),
             ),
-            GestureDetector(
-                onTap: () {
-                  if(clockController.clockText.value=="Clock Out"){
-                     clockController.clockOut();
-                  }
-                  else{
-                    clockController.clockIn();
-                  }
-                },
-                child:
-                    GetX<ClockController>(
-                      builder: (controllerClock) {
-                        return topClockCard(true, clockController.clockText.value, controllerClock.clockInTime.value);
-                      }
-                    )),
+            GetX<ClockController>(builder: (controllerClock) {
+              if (controllerClock.isLoading.value) {
+                return Center(
+                  child: CircularLoading(),
+                );
+              } else {
+                return Text("");
+              }
+            }),
+            GestureDetector(onTap: () {
+              if (clockController.clockText.value == "Clock Out") {
+                clockController.clockOut();
+              } else {
+                clockController.clockIn();
+              }
+            }, child: GetX<ClockController>(builder: (controllerClock) {
+              return topClockCard(true, clockController.clockText.value,
+                  controllerClock.clockInTime.value);
+            })),
             Expanded(
               flex: 30,
               child: Padding(

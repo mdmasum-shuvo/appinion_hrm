@@ -48,7 +48,7 @@ class LeaveDashBoardScreen extends GetWidget {
               flex: 30,
               child: Obx(() {
                 if (applyController.isLoading.value) {
-                  return  const Center(child:  CircularProgressIndicator(color: Colors.white,strokeWidth: 30,));
+                  return  const Center(child:  CircularProgressIndicator(color: Colors.white));
                 } else {
                   return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
