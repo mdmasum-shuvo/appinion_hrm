@@ -5,8 +5,6 @@ import 'package:appinion_hrm/theme/Colors.dart';
 import 'package:appinion_hrm/theme/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
 
 import '../common/CustomAppbar.dart';
 import 'component/ClockCard.dart';
@@ -22,67 +20,73 @@ class HomeScreen extends GetWidget {
     return Scaffold(
       appBar: customAppbarWidget(),
       drawer: AppbarDrawer(),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        alignment: Alignment.center,
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-              purple,
-              lightBlue,
-            ])),
-        child: Column(
-          children: [
-            const Expanded(
-              flex: 2,
-              child: SizedBox(),
+      body: Stack(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height,
+            alignment: Alignment.center,
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                  purple,
+                  lightBlue,
+                ])),
+            child: Column(
+              children: [
+                const Expanded(
+                  flex: 2,
+                  child: SizedBox(),
+                ),
+                const Text(
+                  "Good Morning 🌅 Mr. Masum",
+
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+                const Expanded(
+                  flex: 2,
+                  child: SizedBox(),
+                ),
+
+                GestureDetector(onTap: () {
+                  if (clockController.clockText.value == "Clock Out") {
+                    clockController.clockOut();
+                  } else {
+                    clockController.clockIn();
+                  }
+                }, child: GetX<ClockController>(builder: (controllerClock) {
+                  return topClockCard(true, clockController.clockText.value,
+                      controllerClock.clockInTime.value);
+                })),
+                Expanded(
+                  flex: 30,
+                  child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: GridView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: loadDashboardDataList.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisExtent: getProportionateScreenHeight(200),
+                        ),
+                        itemBuilder: (_, index) => DashBoardProgressItem(
+                            data: loadDashboardDataList[index]),
+                      )),
+                )
+              ],
             ),
-            const Text(
-              "Good Morning 🌅 Mr. Masum",
-              style: TextStyle(fontSize: 18, color: Colors.white),
-            ),
-            const Expanded(
-              flex: 2,
-              child: SizedBox(),
-            ),
-            GetX<ClockController>(builder: (controllerClock) {
-              if (controllerClock.isLoading.value) {
-                return Center(
-                  child: CircularLoading(),
-                );
-              } else {
-                return Text("");
-              }
-            }),
-            GestureDetector(onTap: () {
-              if (clockController.clockText.value == "Clock Out") {
-                clockController.clockOut();
-              } else {
-                clockController.clockIn();
-              }
-            }, child: GetX<ClockController>(builder: (controllerClock) {
-              return topClockCard(true, clockController.clockText.value,
-                  controllerClock.clockInTime.value);
-            })),
-            Expanded(
-              flex: 30,
-              child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: GridView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: loadDashboardDataList.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisExtent: getProportionateScreenHeight(200),
-                    ),
-                    itemBuilder: (_, index) => DashBoardProgressItem(
-                        data: loadDashboardDataList[index]),
-                  )),
-            )
-          ],
-        ),
+          ),
+          GetX<ClockController>(builder: (controllerClock) {
+            if (controllerClock.isLoading.value) {
+              return Center(
+                child: CircularLoading(),
+              );
+            } else {
+              return Text("");
+            }
+          }),
+        ],
       ),
     );
   }
