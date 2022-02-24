@@ -37,7 +37,7 @@ class LeaveDashBoardData {
 
 List<DashBoardData> loadDashboardDataList = [
   DashBoardData(id: 0, title: "Present", subTitle: "Absent", progress: 1,color: green),
-  DashBoardData(id: 0, title: "Late/Leave Early", subTitle: "Ontime", progress: 0.25,color: red),
+  DashBoardData(id: 0, title: "Late/Leave Early", subTitle: "On time", progress: 0.25,color: red),
   DashBoardData(id: 0, title: "Total Working\nHour", subTitle: "Short Working Hour", progress: 0.70,color: lightGreen),
   DashBoardData(id: 0, title: "Overtime", subTitle: "Total Working Hour", progress: 0.5,color: orange),
 

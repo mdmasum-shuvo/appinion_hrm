@@ -4,6 +4,7 @@ import 'package:appinion_hrm/screen/Home/component/DashBoardProgressItem.dart';
 import 'package:appinion_hrm/screen/Home/data/DashboardData.dart';
 import 'package:appinion_hrm/screen/common/AppbarDrawer.dart';
 import 'package:appinion_hrm/screen/leave/LeaveApplyScreen.dart';
+import 'package:appinion_hrm/screen/leave/component/LeaveItem.dart';
 import 'package:appinion_hrm/theme/Colors.dart';
 import 'package:appinion_hrm/theme/SizeConfig.dart';
 import 'package:flutter/material.dart';
@@ -34,10 +35,6 @@ class LeaveDashBoardScreen extends GetWidget {
             ])),
         child: Column(
           children: [
-            const Expanded(
-              flex: 1,
-              child: SizedBox(),
-            ),
             GestureDetector(
                 onTap: () {
                   Get.to(LeaveScreenState());
@@ -45,10 +42,10 @@ class LeaveDashBoardScreen extends GetWidget {
                 child: topClockCard(
                     false, "Apply for Leave", "Take leave if you really need")),
             Expanded(
-              flex: 30,
+              flex: 29,
               child: Obx(() {
                 if (applyController.isLoading.value) {
-                  return  const Center(child:  CircularProgressIndicator(color: Colors.white,strokeWidth: 30,));
+                  return  const Center(child:  CircularProgressIndicator(color: Colors.white));
                 } else {
                   return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -64,6 +61,65 @@ class LeaveDashBoardScreen extends GetWidget {
                       ));
                 }
               }),
+            ) ,
+
+/*
+            Expanded(
+              flex: 30,
+              child: Obx(() {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child:  ListView.builder(
+                    itemCount: applyController.leaveList.length,
+                    itemBuilder: (BuildContext context,int index){
+                      return LeaveItem( data: applyController.leaveList[index],);
+                    },
+                  ),
+                );
+              }),
+            ),*/
+
+            Expanded(
+              flex: 5,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Card(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                  child: Obx(() {
+                      return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child:  ListView.builder(
+                            itemCount: applyController.pendingLeaveList.length,
+                            itemBuilder: (BuildContext context,int index){
+                              return LeaveItem( data: applyController.pendingLeaveList[index],);
+                            },
+                          ),
+                      );
+
+                  }),
+                ),
+              ),
+            ) ,
+
+            Expanded(
+              flex: 13,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Card(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                  child: Obx(() {
+                      return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child:  ListView.builder(
+                            itemCount: applyController.pendingLeaveList.length,
+                            itemBuilder: (BuildContext context,int index){
+                              return LeaveItem( data: applyController.pendingLeaveList[index],);
+                            },
+                          ),
+                      );
+                  }),
+                ),
+              ),
             )
           ],
         ),
