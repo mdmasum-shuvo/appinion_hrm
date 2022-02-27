@@ -18,7 +18,7 @@ class HomeScreen extends GetWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppbarWidget(),
+      appBar: customAppbarWidgetHome(),
       drawer: AppbarDrawer(),
       body: Stack(
         children: [
@@ -41,20 +41,14 @@ class HomeScreen extends GetWidget {
                 ),
                 const Text(
                   "Good Morning 🌅 Mr. Masum",
-
                   style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
                 const Expanded(
                   flex: 2,
                   child: SizedBox(),
                 ),
-
                 GestureDetector(onTap: () {
-                  if (clockController.clockText.value == "Clock Out") {
-                    clockController.clockOut();
-                  } else {
-                    clockController.clockIn();
-                  }
+                  _popupDialog(context, clockController);
                 }, child: GetX<ClockController>(builder: (controllerClock) {
                   return topClockCard(true, clockController.clockText.value,
                       controllerClock.clockInTime.value);
@@ -83,13 +77,37 @@ class HomeScreen extends GetWidget {
                 child: CircularLoading(),
               );
             } else {
-              return Text("");
+              return const Text("");
             }
           }),
         ],
       ),
     );
   }
+}
+
+void _popupDialog(BuildContext context, ClockController clockController) {
+  showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Clock in/out'),
+          content: const Text('Are you sure to clock in/out right now ?'),
+          actions: <Widget>[
+            TextButton(
+                onPressed: () => {
+                      if (clockController.clockText.value == "Clock Out")
+                        {clockController.clockOut()}
+                      else
+                        {clockController.clockIn()}
+                    },
+                child: const Text('YES')),
+            TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('NO')),
+          ],
+        );
+      });
 }
 
 /*GridView.count(

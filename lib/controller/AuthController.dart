@@ -28,7 +28,8 @@ class AuthController extends GetxController {
         //prefs.setString(PREF_TOKEN, casts.value.token.toString());
         token= casts.value.token.toString();
         isSuccess.value = true;
-        Get.to(HomeScreen());
+        //Get.to(HomeScreen());
+        Get.offAll(HomeScreen());
       } else {
         Get.snackbar("Error", "user id or password is invalid",snackPosition: SnackPosition.BOTTOM);
       }
