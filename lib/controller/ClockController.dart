@@ -15,11 +15,13 @@ class ClockController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
+    ClockInRepository.sharedFunc();
     clockInInfo();
     requestDashboard();
   }
 
   void clockIn() async {
+
     try {
       isLoading(true);
       var response = await ClockInRepository.clockInRequest();

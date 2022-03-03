@@ -6,20 +6,26 @@ import 'package:appinion_hrm/model/clock/info/ClockInformation.dart';
 import 'package:appinion_hrm/repository/NetoworkConstant.dart';
 import 'package:appinion_hrm/theme/constants.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
 
 class ClockInRepository {
   static var client = http.Client();
-  static String token=AuthController.token;
+  static  String token = "";
+
+ static sharedFunc() async {
+    final pref= await SharedPreferences.getInstance();
+     token=pref.getString(PREF_TOKEN) ?? "";
+  }
 
   static Future<ClockResponse?> clockInRequest() async {
     var url = BASE_URL + CLOCK_IN;
-    //final pref = await SharedPreferences.getInstance();
+    final pref = await SharedPreferences.getInstance();
     //final String token = pref.getString(PREF_TOKEN) ?? "";
     var response = await client.post(Uri.parse(url), headers: <String, String>{
       'Accept': 'application/json',
       'Authorization': 'Bearer $token'
-     // 'Authorization': 'Bearer $token'
+      // 'Authorization': 'Bearer $token'
     });
     if (response.statusCode == 200) {
       var json = jsonDecode(response.body);
@@ -28,6 +34,7 @@ class ClockInRepository {
     } else
       return null;
   }
+
   static Future<ClockResponse?> clockOutRequest() async {
     var url = BASE_URL + CLOCK_OUT;
     //final pref = await SharedPreferences.getInstance();
@@ -35,7 +42,7 @@ class ClockInRepository {
     var response = await client.post(Uri.parse(url), headers: <String, String>{
       'Accept': 'application/json',
       'Authorization': 'Bearer $token'
-     // 'Authorization': 'Bearer $token'
+      // 'Authorization': 'Bearer $token'
     });
     if (response.statusCode == 200) {
       var json = jsonDecode(response.body);
@@ -45,9 +52,9 @@ class ClockInRepository {
       return null;
   }
 
-
-  static Future<ClockInformation?> clockInfo() async{
-    var url =BASE_URL+CLOCK_INFO;
+  static Future<ClockInformation?> clockInfo() async {
+    var url = BASE_URL + CLOCK_INFO;
+    await sharedFunc();
 
     var response = await client.get(Uri.parse(url), headers: <String, String>{
       'Accept': 'application/json',
@@ -60,6 +67,5 @@ class ClockInRepository {
       return clockInResponse;
     } else
       return null;
-
   }
 }
