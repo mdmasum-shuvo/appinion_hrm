@@ -7,10 +7,7 @@ class DropdownController extends GetxController {
 
   void onSelected(String value) {
     selectedValue = value;
-
     update();
-
-    print(selectedValue);
     changeLanguage(selectedValue);
   }
 

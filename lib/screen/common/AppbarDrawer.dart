@@ -86,7 +86,6 @@ class AppbarDrawer extends GetWidget {
                     fontSize: 14)),
              onTap: () {
                Get.to(PhoneBookScreen());
-
                //Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
              },
           ),

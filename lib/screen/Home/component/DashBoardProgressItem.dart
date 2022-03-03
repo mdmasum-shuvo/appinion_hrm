@@ -15,11 +15,7 @@ class DashBoardProgressItem extends StatelessWidget {
   Widget build(BuildContext context) {
     int progressText = (data.progress * 100).toInt();
     final Color color = data.color;
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).pushNamed(HomeScreen.routeName);
-      },
-      child: SizedBox(
+    return SizedBox(
         child: Expanded(
           child: Card(
             shape:
@@ -123,7 +119,7 @@ class DashBoardProgressItem extends StatelessWidget {
             ),
           ),
         ),
-      ),
+
     );
   }
 }

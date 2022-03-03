@@ -7,4 +7,5 @@ const kSecondaryColor = Color(0xff005EA5);
 const kTextColor = Color(0xff005EA5);
 
 const String PREF_TOKEN="token";
+const String IS_LOGIN="login";
 

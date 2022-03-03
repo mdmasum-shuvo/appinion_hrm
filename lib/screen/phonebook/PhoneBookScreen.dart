@@ -1,5 +1,6 @@
 
 import 'package:appinion_hrm/controller/PhoneBookController.dart';
+import 'package:appinion_hrm/screen/common/AppbarDrawer.dart';
 import 'package:appinion_hrm/screen/common/CustomAppbar.dart';
 import 'package:appinion_hrm/screen/phonebook/PhoneBookItem.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:appinion_hrm/theme/Colors.dart';
 import '../common/CustomAppbar.dart';
 
 class PhoneBookScreen extends GetWidget{
+  static const routeName = '/phone_book_screen';
 
   final phoneBookController=Get.put(PhoneBookController());
 
@@ -16,6 +18,7 @@ class PhoneBookScreen extends GetWidget{
     // TODO: implement build
     return Scaffold(
         appBar: customAppbarWidget(),
+        drawer: AppbarDrawer(),
         body: Container(
         height: MediaQuery.of(context).size.height,
         alignment: Alignment.center,
