@@ -1,18 +1,16 @@
 import 'dart:convert';
 
-import 'package:appinion_hrm/controller/AuthController.dart';
 import 'package:appinion_hrm/model/DefaultResponse.dart';
 import 'package:appinion_hrm/model/leave/LeaveData.dart';
 import 'package:appinion_hrm/model/leave/LeavePost.dart';
 import 'package:appinion_hrm/model/leave/leaveList/all_leave_response.dart';
 import 'package:http/http.dart' as http;
-
 import 'NetoworkConstant.dart';
+import 'SharePreferanceData.dart';
 
 class LeaveRepository{
   static var client = http.Client();
-  static String token=AuthController.token;
-
+  static String token = SharePrefData.token;
   static Future<DefaultResponse?> applyLeave(LeavePost post) async{
     var url = BASE_URL + APPLY_LEAVE;
 
@@ -36,8 +34,6 @@ class LeaveRepository{
 
   static Future<LeaveData?> leaveInfo() async{
     var url = BASE_URL + LEAVE_INFO;
-
-
     var response = await client.get(Uri.parse(url),
         headers: <String, String>{
           'Accept': 'application/json',

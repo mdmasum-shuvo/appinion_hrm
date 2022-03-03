@@ -15,7 +15,6 @@ class ClockController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    ClockInRepository.sharedFunc();
     clockInInfo();
     requestDashboard();
   }
