@@ -119,10 +119,10 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                                             setState(() {
                                               leaveType = newValue1!;
                                               if(newValue1=="Half day Leave"){
-                                                leaveCatId="2";
+                                                leaveTypeId="2";
                                               }
                                               else if(newValue1=="Full day Leave"){
-                                                leaveCatId="1";
+                                                leaveTypeId="1";
                                               }
                                             });
                                           },
@@ -219,7 +219,7 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                                 children: const [
                                    Text("No of Days",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
                                    Expanded(
-                                      child:  Text("2",style: TextStyle(color: gray),)
+                                      child:  Text("",style: TextStyle(color: gray),)
                                   ),
                                 ],),
                             ),),
@@ -288,7 +288,7 @@ class LeaveApplyScreen extends State<LeaveScreenState>{
                       post.leaveTypeId=leaveTypeId;
                       post.reason=reasonController.text.toString();
                       if(isValid(post,context)){
-                        //applyController.requestApplyLeave(post);
+                        applyController.requestApplyLeave(post);
 
                       }
 

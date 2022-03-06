@@ -15,6 +15,7 @@ class DashboardRepository {
 
   static Future<DashBoardResponse?> dashboardRequest() async {
     var url = BASE_URL + DASHBOARD;
+    await SharePrefData.sharedFunc();
 
     var response = await client.get(Uri.parse(url),
         headers: <String, String>{

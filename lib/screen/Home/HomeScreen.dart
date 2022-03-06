@@ -17,6 +17,8 @@ class HomeScreen extends GetWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
     return Scaffold(
       appBar: customAppbarWidgetHome(),
       drawer: AppbarDrawer(),
@@ -96,6 +98,7 @@ void _popupDialog(BuildContext context, ClockController clockController) {
           actions: <Widget>[
             TextButton(
                 onPressed: () => {
+                      Navigator.of(context).pop(),
                       if (clockController.clockText.value == "Clock Out")
                         {clockController.clockOut()}
                       else

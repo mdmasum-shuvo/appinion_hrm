@@ -1,4 +1,5 @@
 import 'package:appinion_hrm/controller/AuthController.dart';
+import 'package:appinion_hrm/repository/SharePreferanceData.dart';
 import 'package:appinion_hrm/screen/common/Loader.dart';
 import 'package:appinion_hrm/theme/Colors.dart';
 import 'package:appinion_hrm/theme/ImageAssets.dart';
@@ -7,6 +8,7 @@ import 'package:appinion_hrm/theme/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:appinion_hrm/repository/SharePreferanceData.dart';
 
 import '../Home/HomeScreen.dart';
 import 'component/AuthScreenComponent.dart';
@@ -15,6 +17,8 @@ String errorText = "";
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login_screen';
+
+
 
   @override
   LoginScreenState createState() => LoginScreenState();
@@ -27,6 +31,8 @@ class LoginScreenState extends State<LoginScreen> {
   var userPassController = TextEditingController();
   final loginController = Get.put(AuthController());
 
+
+
   void _togglePasswordVisible() {
     setState(() {
       _passwordVisible = !_passwordVisible;
@@ -36,6 +42,7 @@ class LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
 
     return Scaffold(
         body: SingleChildScrollView(

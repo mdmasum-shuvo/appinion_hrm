@@ -93,7 +93,7 @@ class ClockController extends GetxController {
       }
       else
       {
-        Get.snackbar("error","Something went wrong",snackPosition: SnackPosition.BOTTOM);
+        //Get.snackbar("error","Something went wrong",snackPosition: SnackPosition.BOTTOM);
       }
     }
 

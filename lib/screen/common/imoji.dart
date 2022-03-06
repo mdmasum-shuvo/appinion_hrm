@@ -12,5 +12,5 @@ Widget sickEmoji(){
 Widget vacationEmoji(){
 
   return
-    const Text("🏝️",style: TextStyle(fontSize: 16),) ;
+    const Text("🏝️",style: TextStyle(fontSize: 40),) ;
 }

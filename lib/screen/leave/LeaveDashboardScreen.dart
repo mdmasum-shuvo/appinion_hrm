@@ -111,9 +111,9 @@ class LeaveDashBoardScreen extends GetWidget {
                       return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child:  ListView.builder(
-                            itemCount: applyController.pendingLeaveList.length,
+                            itemCount: applyController.leaveList.length,
                             itemBuilder: (BuildContext context,int index){
-                              return LeaveItem( data: applyController.pendingLeaveList[index],);
+                              return LeaveItem( data: applyController.leaveList[index],);
                             },
                           ),
                       );

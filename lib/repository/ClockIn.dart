@@ -58,7 +58,8 @@ class ClockInRepository {
       var json = jsonDecode(response.body);
       var clockInResponse = ClockInformation.fromJson(json);
       return clockInResponse;
-    } else
+    } else {
       return null;
+    }
   }
 }
