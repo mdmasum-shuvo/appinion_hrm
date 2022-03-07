@@ -25,7 +25,8 @@ class LeaveRepository{
         });
 
     if(response.statusCode==200){
-      var responseData=DefaultResponse.fromJson(response);
+      var json = jsonDecode(response.body);
+      var responseData=DefaultResponse.fromJson(json);
       return responseData;
     }
     return null;

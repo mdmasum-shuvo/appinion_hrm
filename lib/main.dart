@@ -11,7 +11,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool? isLogin =prefs.getBool(IS_LOGIN);
+  bool? isLogin ;
+  if(prefs.getBool(IS_LOGIN)==null){
+    isLogin=false;
+  }
+  else{
+    isLogin=prefs.getBool(IS_LOGIN);
+  }
+
   runApp(MyApp(isLogin:isLogin!));
 }
 
@@ -23,7 +30,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'appinion hrm',
       theme: theme(),
-      initialRoute: isLogin==false?"/":"/home",
+      initialRoute:isLogin==false ? "/":"/home",
       getPages: Routes.routes,
     );
   }

@@ -45,8 +45,15 @@ class LeaveController extends GetxController {
       isLoading(true);
       var response = await LeaveRepository.allLeaveRequest(page);
       if (response != null) {
-        leaveList.value=response.data!.takeWhile((i) => i.status=="A").toList();
         pendingLeaveList.value = response.data!.takeWhile((i) => i.status=="P").toList();
+       // leaveList.value=response.data!.takeWhile((i) => i.status=="A").toList();
+
+        for(int i=0;i<response.data!.length;i++){
+          if(response.data![i].status=="A"){
+            leaveList.add(response.data![i]);
+          }
+
+        }
         Get.snackbar("Success", "data loaded successfully".toString(),
             snackPosition: SnackPosition.BOTTOM);
       } else {
