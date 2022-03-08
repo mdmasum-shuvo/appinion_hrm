@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:appinion_hrm/controller/AuthController.dart';
 import 'package:appinion_hrm/model/clock/clock_response.dart';
 import 'package:appinion_hrm/model/clock/info/ClockInformation.dart';
-import 'package:appinion_hrm/repository/NetoworkConstant.dart';
+import 'package:appinion_hrm/repository/NetworkConstant.dart';
 import 'package:appinion_hrm/repository/SharePreferanceData.dart';
 import 'package:appinion_hrm/theme/constants.dart';
 import 'package:http/http.dart' as http;

@@ -1,4 +1,5 @@
 import 'package:appinion_hrm/controller/ClockController.dart';
+import 'package:appinion_hrm/controller/UserController.dart';
 import 'package:appinion_hrm/screen/common/AppbarDrawer.dart';
 import 'package:appinion_hrm/screen/common/Loader.dart';
 import 'package:appinion_hrm/theme/Colors.dart';
@@ -14,6 +15,7 @@ import 'data/DashboardData.dart';
 class HomeScreen extends GetWidget {
   static const routeName = '/home_screen';
   final clockController = Get.put(ClockController());
+  final userController = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +43,13 @@ class HomeScreen extends GetWidget {
                   flex: 2,
                   child: SizedBox(),
                 ),
-                const Text(
-                  "Good Morning 🌅 Mr. Masum",
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                ),
+                GetX<UserController>(builder: (userController) {
+                  return Text(
+                    "Hello 🌅 " +userController.name.value!,
+                    style: const TextStyle(fontSize: 18, color: Colors.white),
+                  );
+                }),
+
                 const Expanded(
                   flex: 2,
                   child: SizedBox(),

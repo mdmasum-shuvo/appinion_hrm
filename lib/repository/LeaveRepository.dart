@@ -5,7 +5,7 @@ import 'package:appinion_hrm/model/leave/LeaveData.dart';
 import 'package:appinion_hrm/model/leave/LeavePost.dart';
 import 'package:appinion_hrm/model/leave/leaveList/all_leave_response.dart';
 import 'package:http/http.dart' as http;
-import 'NetoworkConstant.dart';
+import 'NetworkConstant.dart';
 import 'SharePreferanceData.dart';
 
 class LeaveRepository{

@@ -1,8 +1,7 @@
 
-import 'package:http/http.dart' as http;
 
- const String BASE_URL="https://rnd.appinionbd.com/appinion_hrm_test/api/";
- const String IMAGE_URL="https://rnd.appinionbd.com/appinion_hrm_test/storage/";
+ const String BASE_URL="https://rnd.appinionbd.com/appinion_hrm/api/";
+ const String IMAGE_URL="https://rnd.appinionbd.com/appinion_hrm/storage/";
 
  const String SIGN_IN="signin";
  const String CLOCK_IN="attendances/clock-in";
@@ -13,3 +12,4 @@ import 'package:http/http.dart' as http;
  const String LEAVE_INFO="user-leave";
  const String DASHBOARD="user-dashboard";
  const String PHONEBOOK="user-phonebook";
+ const String USER="user";

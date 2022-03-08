@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:appinion_hrm/model/login_response.dart';
-import 'package:appinion_hrm/repository/NetoworkConstant.dart';
+import 'package:appinion_hrm/repository/NetworkConstant.dart';
 import 'package:http/http.dart' as http;
 
 class AuthRepository {

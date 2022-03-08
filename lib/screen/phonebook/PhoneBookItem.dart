@@ -1,5 +1,5 @@
 import 'package:appinion_hrm/model/phone_book.dart';
-import 'package:appinion_hrm/repository/NetoworkConstant.dart';
+import 'package:appinion_hrm/repository/NetworkConstant.dart';
 import 'package:appinion_hrm/screen/phonebook/PhoneBookScreen.dart';
 import 'package:appinion_hrm/theme/ImageAssets.dart';
 import 'package:appinion_hrm/theme/SizeConfig.dart';
