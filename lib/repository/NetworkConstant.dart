@@ -1,6 +1,7 @@
 
 
  const String BASE_URL="https://rnd.appinionbd.com/appinion_hrm/api/";
+ const String BASE_URL_TEST="https://rnd.appinionbd.com/appinion_hrm_test/api/";
  const String IMAGE_URL="https://rnd.appinionbd.com/appinion_hrm/storage/";
 
  const String SIGN_IN="signin";
