@@ -1,7 +1,7 @@
 
 
- const String BASE_URL="https://rnd.appinionbd.com/appinion_hrm/api/";
- const String IMAGE_URL="https://rnd.appinionbd.com/appinion_hrm/storage/";
+ const String BASE_URL="https://rnd.appinionbd.com/appinion_hrm_test/api/";
+ const String IMAGE_URL="https://rnd.appinionbd.com/mm/storage/";
 
  const String SIGN_IN="signin";
  const String CLOCK_IN="attendances/clock-in";

@@ -4,6 +4,7 @@ import 'package:appinion_hrm/screen/Home/HomeScreen.dart';
 import 'package:appinion_hrm/screen/auth/LoginScreen.dart';
 import 'package:appinion_hrm/screen/leave/LeaveDashboardScreen.dart';
 import 'package:appinion_hrm/screen/phonebook/PhoneBookScreen.dart';
+import 'package:appinion_hrm/screen/tada/TaDaScreen.dart';
 import 'package:appinion_hrm/theme/Colors.dart';
 import 'package:appinion_hrm/theme/ImageAssets.dart';
 import 'package:flutter/cupertino.dart';
@@ -93,6 +94,24 @@ class AppbarDrawer extends GetWidget {
                     fontSize: 14)),
             onTap: () {
               Get.to(PhoneBookScreen());
+              //Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+            },
+          ),
+
+          const SizedBox(
+            height: 24,
+          ),
+          ListTile(
+            leading: const CircleAvatar(
+              backgroundImage: AssetImage(phoneBookIcon),
+            ),
+            title: const Text("Expense Bill",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14)),
+            onTap: () {
+              Get.to(TadaState());
               //Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
             },
           ),

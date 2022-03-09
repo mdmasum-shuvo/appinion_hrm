@@ -361,7 +361,7 @@ class LeaveApplyScreen extends State<LeaveScreenState> {
                             child: Expanded(child: CircularLoading()))
                     );
                   } else {
-                    return Expanded(child: const Text(""));
+                    return const Expanded(child: Text(""));
                   }
                 }),
               ],

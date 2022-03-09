@@ -3,6 +3,7 @@ import 'package:appinion_hrm/screen/Home/HomeScreen.dart';
 import 'package:appinion_hrm/screen/auth/LoginScreen.dart';
 import 'package:appinion_hrm/screen/leave/LeaveDashboardScreen.dart';
 import 'package:appinion_hrm/screen/phonebook/PhoneBookScreen.dart';
+import 'package:appinion_hrm/screen/tada/TaDaScreen.dart';
 
 import 'package:get/get.dart';
 
@@ -12,6 +13,7 @@ class Routes{
     GetPage(name: '/', page: () => LoginScreen()),
     GetPage(name: '/home', page: () => HomeScreen()),
     GetPage(name: '/leave', page: () => LeaveDashBoardScreen()),
-    GetPage(name: '/phone_book', page: () => PhoneBookScreen())
+    GetPage(name: '/phone_book', page: () => PhoneBookScreen()),
+    GetPage(name: '/tada_screen', page: () => TadaState())
   ];
 }
